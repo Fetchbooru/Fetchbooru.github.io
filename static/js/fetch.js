@@ -40,6 +40,8 @@ window.onload = pageLoad;
 
 var safeRate = true;
 
+var repeats = 0;
+
 function setSafe() {
   window.scrollTo(0, 0);
   safeRate = true;
@@ -56,6 +58,10 @@ function search() {
   md5s = [];
   tag = document.getElementById("tags").value;
   pageLoad();
+}
+
+function updateCont() {
+  document.getElementById("cont").innerHTML = window.repeats;
 }
 
 function setNotSafe() {
@@ -126,7 +132,7 @@ function updateYan() {
         if (safeRate == true) {
           if (safe == "s") {
             if (inArray(md5, md5s)) {
-              // shrug
+              repeats++;
             } else {
               md5s.push(md5)
               $grid.append($stuff).masonry('appended', $stuff );$grid.masonry();
@@ -136,7 +142,7 @@ function updateYan() {
 
         } else {
           if (inArray(md5, md5s)) {
-            // shrug
+            repeats++;
           } else {
             md5s.push(md5)
             $grid.append($stuff).masonry('appended', $stuff );$grid.masonry();
@@ -175,7 +181,7 @@ function updateKona() {
         if (safeRate == true) {
           if (safe == "s") {
             if (inArray(md5, md5s)) {
-              // shrug
+              repeats++;
             } else {
               md5s.push(md5)
               $grid.append($stuff).masonry('appended', $stuff );$grid.masonry();
@@ -185,7 +191,7 @@ function updateKona() {
 
         } else {
           if (inArray(md5, md5s)) {
-            // shrug
+           repeats++;
           } else {
             md5s.push(md5)
             $grid.append($stuff).masonry('appended', $stuff );$grid.masonry();
@@ -228,7 +234,7 @@ function updateGel() {
         if (safeRate == true) {
           if (safe == "s") {
             if (inArray(md5, md5s)) {
-              // shrug
+              repeats++;
             } else {
               md5s.push(md5)
               $grid.append($stuff).masonry('appended', $stuff );$grid.masonry();
@@ -238,7 +244,7 @@ function updateGel() {
 
         } else {
           if (inArray(md5, md5s)) {
-            // shrug
+            repeats++;
           } else {
             md5s.push(md5)
             $grid.append($stuff).masonry('appended', $stuff );$grid.masonry();
@@ -280,7 +286,7 @@ function updateSan() {
         if (safeRate == true) {
           if (safe == "s") {
             if (inArray(md5, md5s)) {
-              // shrug
+              repeats++;
             } else {
               md5s.push(md5)
               $grid.append($stuff).masonry('appended', $stuff );$grid.masonry();
@@ -290,7 +296,7 @@ function updateSan() {
 
         } else {
           if (inArray(md5, md5s)) {
-            // shrug
+            repeats++;
           } else {
             md5s.push(md5)
             $grid.append($stuff).masonry('appended', $stuff );$grid.masonry();
@@ -331,7 +337,7 @@ function updateDan() {
         if (safeRate == true) {
           if (safe == "s") {
             if (inArray(md5, md5s)) {
-              // shrug
+              repeats++;
             } else {
               md5s.push(md5)
               $grid.append($stuff).masonry('appended', $stuff );$grid.masonry();
@@ -341,7 +347,7 @@ function updateDan() {
 
         } else {
           if (inArray(md5, md5s)) {
-            // shrug
+            repeats++;
           } else {
             md5s.push(md5)
             $grid.append($stuff).masonry('appended', $stuff );$grid.masonry();
@@ -388,6 +394,7 @@ $grid.imagesLoaded().progress( function() {
 
 setInterval(function() {
   $grid.masonry('layout');
+  updateCont();
   //checkImages();
 }, 1000);
 
