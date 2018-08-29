@@ -111,7 +111,7 @@ function updateYan() {
   $.ajax({
     type: 'GET',
     url: 'https://yande.re/post.json?&page=' + page + '&tags=' + tag +
-      '&commit=Search',
+      '&commit=Search&limit=10',
     data: {
       get_param: 'value'
     },
@@ -187,7 +187,7 @@ function updateKona() {
   $.ajax({
     type: 'GET',
     url: 'https://konachan.com/post.json?' + 'page=' + page + '&tags=' +
-      tag + '&commit=Search',
+      tag + '&commit=Search&limit=10',
     data: {
       get_param: 'value'
     },
@@ -264,7 +264,8 @@ function updateGel() {
         var preview = imageSample.replace("/images", "//images");
         var id = element.id;
         var source =
-          'https://gelbooru.com/index.php?page=post&s=view&id=' + id;
+          'https://gelbooru.com/index.php?page=post&limit=10&s=view&id=' +
+          id;
         var md5 = element.hash;
         var safe = element.rating;
         var tags = element.tags;
@@ -395,7 +396,7 @@ function updateDan() {
   $.ajax({
     type: 'GET',
     url: 'https://danbooru.donmai.us/posts.json?' + 'page=' + page +
-      '&tags=' + tag + '&commit=Search',
+      '&tags=' + tag + '&commit=Search&limit=10',
     data: {
       get_param: 'value'
     },
@@ -470,7 +471,7 @@ $(document.body).on('touchmove', onScroll); // for mobile
 $(window).on('scroll', onScroll);
 
 function onScroll() {
-  if ($(window).scrollTop() + window.innerHeight >= document.body.scrollHeight) {
+  if ($(window).scrollTop() + window.innerHeight >= (300 - document.body.scrollHeight)) {
     nextPage();
     $grid.masonry();
   }
