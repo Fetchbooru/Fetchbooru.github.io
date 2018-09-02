@@ -5,14 +5,17 @@ Made in javascript/Jquery, html and css.
 Working:
 Danbooru
 Yandere
+Konachan
+Giphy
 
 Half Working:
-Konachan (need a extension to enable CORS)
+None
 
 Broken:
-Shankaku
+Gelbooru
 
-
+Dropped:
+Sankaku
 
 Resources Used:
 Materialize
