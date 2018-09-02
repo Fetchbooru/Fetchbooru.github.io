@@ -472,7 +472,7 @@ $(document.body).on('touchmove', onScroll); // for mobile
 $(window).on('scroll', onScroll);
 
 function onScroll() {
-  if ($(window).scrollTop() + window.innerHeight >= (300 - document.body.scrollHeight)) {
+  if ($(window).scrollTop() + window.innerHeight >= (document.body.scrollHeight - 50)) {
     nextPage();
     $grid.masonry();
   }
