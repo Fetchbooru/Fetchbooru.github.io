@@ -186,7 +186,8 @@ function updateKona() {
   jQuery.support.cors = true;
   $.ajax({
     type: 'GET',
-    url: 'https://konachan.com/post.json?' + 'page=' + page + '&tags=' +
+    url: 'https://cors.io/?https://konachan.com/post.json?' + 'page=' +
+      page + '&tags=' +
       tag + '&commit=Search&limit=10',
     data: {
       get_param: 'value'
