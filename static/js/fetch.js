@@ -1,4 +1,5 @@
 var tag = "";
+var gifTag = "";
 $(document).ready(function() {
 
   document.documentElement.className +=
@@ -61,6 +62,7 @@ function search() {
   tag = document.getElementById("tags").value;
   pageLoad();
   repeats = 0;
+  gifTag = tag.replace("_", " ");
 }
 
 function updateCont() {
@@ -120,7 +122,7 @@ function updateGif() {
     type: 'GET',
     url: 'https://api.giphy.com/v1/gifs/search?api_key=LblcJMKjfxA9NteHkwgu5oeSiKbylNXw&q=anime' +
       ' ' +
-      tag + '&offset=' +
+      gifTag + '&offset=' +
       offset,
     data: {
       get_param: 'value'
