@@ -370,7 +370,7 @@ function updateGel() {
         var stuff =
           '<div class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><img class="activator" id="img" src="' +
           preview +
-          '" onerror="this.onerror=null;this.src=\'imagefound.gif\';" /></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID: ' +
+          '" onerror="this.onerror=null;this.src=\'../img/Error404.png\';" /></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID: ' +
           id +
           '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" href="' +
           source +
