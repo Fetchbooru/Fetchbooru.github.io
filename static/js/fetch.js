@@ -5,7 +5,12 @@ $(document).ready(function() {
   document.documentElement.className +=
     (("ontouchstart" in document.documentElement) ? ' touch' : ' no-touch');
 
+
+
   $('.sidenav').sidenav();
+
+  $('.sidenav').sidenav('open');
+
 
   $('input.autocomplete').autocomplete({
     data: {
