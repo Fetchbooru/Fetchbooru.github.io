@@ -6,13 +6,14 @@ Working:
 Danbooru
 Yandere
 Konachan
-Giphy
+Gelbooru
+
 
 Half Working:
-None
+Giphy
 
 Broken:
-Gelbooru
+None
 
 Dropped:
 Sankaku

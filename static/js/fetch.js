@@ -100,12 +100,9 @@ function pageLoad() {
   if ($('#checkDan').is(':checked')) {
     updateDan();
   }
-  if ($('#checkSan').is(':checked')) {
-    updateSan();
-  }
-  /*if($('#checkGel').is(':checked')){
+  if ($('#checkGel').is(':checked')) {
     updateGel();
-    }*/
+  }
   if ($('#checkGif').is(':checked')) {
     updateGif();
   }
@@ -338,36 +335,37 @@ function updateKona() {
 }
 
 function updateGel() {
-  jQuery.support.cors = true;
   $.ajax({
     type: 'GET',
-    url: 'https://gelbooru.com//index.php?page=dapi&s=post&q=index&json=1&pid=' +
-      page + '&tags=' + tag,
+    url: 'https://cors.io/?https://gelbooru.com/index.php?page=dapi&s=post&q=index&json=1&pid=' +
+      page + '&tags=' + tag + '&limit=10',
     data: {
       get_param: 'value'
     },
     dataType: 'json',
     success: function(data) {
+      if ($.isEmptyObject(data)) {
+        console.log('No more Gelbooru Results');
+        var rip =
+          '<div class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><a>No more Yandere Results</a></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID:<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" href="">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID:<i class="material-icons right">close</i></span><p>Tags: ' +
+          tags + '.</p></div></div>';
+        var $rip = $(rip);
+        $grid.append($rip).masonry('appended', $rip);
+        $grid.masonry();
+        $grid.masonry('layout');
+      }
       $.each(data, function(index, element) {
-        var imageSample = element.file_url;
-        var preview = imageSample.replace("/images", "//images");
+        var preview = element.file_url;
         var id = element.id;
-        var source =
-          'https://gelbooru.com/index.php?page=post&limit=10&s=view&id=' +
-          id;
+        var source = element.file_url;
         var md5 = element.hash;
         var safe = element.rating;
         var tags = element.tags;
-        var height = element.height;
-        var width = element.width;
         lmd5s = md5s.length;
-
         var stuff =
-          '<div class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><object width="' +
-          width + '" height="' + height + '" data="' + preview +
-          '" type="image/png"><img class="activator" id="img" src="' +
-          imageSample +
-          '" ></object></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID: ' +
+          '<div class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><img class="activator" id="img" src="' +
+          preview +
+          '" ></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID: ' +
           id +
           '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" href="' +
           source +
