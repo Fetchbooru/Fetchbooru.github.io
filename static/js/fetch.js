@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 
   $(document).ready(function() {
-    //Autocomplete
+    // Autocomplete
     $(function() {
       $("input").keyup(function() {
         tag = document.getElementById('tags').value;
@@ -134,7 +134,7 @@ function updateGif() {
       if ($.isEmptyObject(data)) {
         console.log('No more Gif Results');
         var rip =
-          '<div class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><a>No more Giphy Results</a></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID:<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" href="">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID:<i class="material-icons right">close</i></span><p>Tags: ' +
+          '<div class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><a>No more Giphy Results</a></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID:<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" href="">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID:<i class="material-icons right">close</i></span><p>Tags: ' +
           tag + '.</p></div></div>';
         var $rip = $(rip);
         $grid.append($rip).masonry('appended', $rip);
@@ -154,7 +154,7 @@ function updateGif() {
           preview +
           '" /></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID: ' +
           id +
-          '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" href="' +
+          '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" target="_blank" href="' +
           source +
           '">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID: ' +
           id +
@@ -210,7 +210,7 @@ function updateYan() {
       if ($.isEmptyObject(data)) {
         console.log('No more Ynadere Results');
         var rip =
-          '<div class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><a>No more Yandere Results</a></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID:<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" href="">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID:<i class="material-icons right">close</i></span><p>Tags: ' +
+          '<div class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><a>No more Yandere Results</a></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID:<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" href="">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID:<i class="material-icons right">close</i></span><p>Tags: ' +
           tags + '.</p></div></div>';
         var $rip = $(rip);
         $grid.append($rip).masonry('appended', $rip);
@@ -230,7 +230,7 @@ function updateYan() {
           preview +
           '" ></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID: ' +
           id +
-          '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" href="' +
+          '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" href="' +
           source +
           '">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID: ' +
           id +
@@ -297,7 +297,7 @@ function updateKona() {
           preview +
           '" ></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID: ' +
           id +
-          '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" href="' +
+          '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" href="' +
           source +
           '">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID: ' +
           id +
@@ -352,7 +352,7 @@ function updateGel() {
       if ($.isEmptyObject(data)) {
         console.log('No more Gelbooru Results');
         var rip =
-          '<div class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><a>No more Yandere Results</a></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID:<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" href="">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID:<i class="material-icons right">close</i></span><p>Tags: ' +
+          '<div class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><a>No more Yandere Results</a></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID:<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" href="">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID:<i class="material-icons right">close</i></span><p>Tags: ' +
           tags + '.</p></div></div>';
         var $rip = $(rip);
         $grid.append($rip).masonry('appended', $rip);
@@ -372,7 +372,7 @@ function updateGel() {
           preview +
           '" onerror="this.onerror=null;this.src=\'../img/Error404.png\';" /></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID: ' +
           id +
-          '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" href="' +
+          '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" href="' +
           source +
           '">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID: ' +
           id +
@@ -440,7 +440,7 @@ function updateSan() {
           preview +
           '" ></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID: ' +
           id +
-          '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" href="' +
+          '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" href="' +
           source +
           '">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID: ' +
           id +
@@ -507,7 +507,7 @@ function updateDan() {
           preview +
           '" ></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID: ' +
           id +
-          '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" href="' +
+          '<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" href="' +
           source +
           '">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID: ' +
           id +
