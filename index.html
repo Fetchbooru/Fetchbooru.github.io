@@ -1,97 +1,116 @@
 <!DOCTYPE html>
 <html>
-<head>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-<link rel="stylesheet" href="static/css/fetch.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-<meta content="utf-8" http-equiv="encoding">
-<title>Fetchbooru - Anime Images</title>
-</head>
 
+<head>
+    
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <link rel="stylesheet" href="static/css/fetch.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <title>Fetchbooru - Anime Images</title>
+</head>
+<div id="app">
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper indigo">
-            <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large left"><i class="material-icons">menu</i></a>
-            <a class="center white-text" href="about.html">Fetchbooru</a>
-            <a class="right black-text" id="cont" style="padding-right:20px;">0</a>
-            <a class="right black-text">Repeats blocked:</a>
+      <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large left"><i class="material-icons">menu</i></a>
+      <a class="center white-text" href="about.html">Fetchbooru</a>
+      <div id="" class="black-text right">{{blocks}}</div>
+      <a class="right black-text">Repeats blocked:</a>
+    </div>
   </nav>
 </div>
 
 
 <ul id="slide-out" class="sidenav indigo">
-          <li>
-           <form>
-            <div class="container">
-               <div class="input-field" >
-                <input id="tags" type="text" class="validate autocomplete"></input>
-                <label class="white-text" for="tags">Tags</label>
-               </div>
-               <button class="btn blue darken-1 waves-effect waves-light" onclick="search(); return false;">Search
-                 <i class="material-icons right">search</i>
-               </button>
-            </div>
-           </form>
-          </li>
-          <!--
+  <li>
+    <form>
+      <div class="container">
+        <div class="input-field">
+          <input id="tags" type="text" class="validate autocomplete"></input>
+          <label class="white-text" for="tags">Tags</label>
+        </div>
+        <button class="btn blue darken-1 waves-effect waves-light" v-on:click="search">Search
+          <i class="material-icons right">search</i>
+        </button>
+      </div>
+    </form>
+  </li>
+  <!--
           <li><div class="divider"></div></li>
           <li><a class="subheader white-text">Rating Buttons for now</a></li>
           <li><a class="waves-effect white-text blue darken-1 waves-light btn" onclick="setSafe();" >setSafe</a></li>
           <li><a class="waves-effect white-text blue darken-1 waves-light btn" onclick="setNotSafe();" >setNotSafe</a></li>
           -->
-          <div style="padding-left: 80px;">
-          <li>
-          <br>
+  <div style="padding-left: 80px;">
+    <li>
+      <br>
       <label>
-        <input type="checkbox" class="center white" id="checkDan" style="border: 2px solid #ffffff;"/>
+        <input type="checkbox" class="center white" id="checkDan" value="checkDan" v-model="checkedSources" />
         <span class="white-text">Danbooru</span>
       </label>
     </li>
     <li>
       <label>
-        <input type="checkbox" class="center white" id="checkYan"/>
+        <input type="checkbox" class="center white" id="checkYan" value="checkYan" v-model="checkedSources" />
         <span class="white-text">Yandere</span>
       </label>
     </li>
     <li>
       <label>
-        <input type="checkbox" class="center white" id="checkGel"/>
+        <input type="checkbox" class="center white" id="checkGel" value="checkGel" v-model="checkedSources" />
         <span class="white-text">Gelbooru</span>
       </label>
     </li>
     <li>
       <label>
-        <input type="checkbox" class="center white" id="checkKona"/>
+        <input type="checkbox" class="center white" id="checkKona" value="checkKona" v-model="checkedSources" />
         <span class="white-text">Konachan</span>
       </label>
     </li>
     <li>
       <label>
-        <input type="checkbox" class="center white" id="checkGif"/>
+        <input type="checkbox" class="center white" id="checkGif" value="checkGif" v-model="checkedSources" />
         <span class="white-text">Giphy</span>
       </label>
     </li>
-    </div>
+  </div>
 </ul>
-
 
 
 
 
 <main>
   <div class="">
-    <div id="grid" class="grid center" style="width:90%">
+    <div id="grid" v-masonry item-selector=".block" class="grid center" style="width:90%">
+      {{grid}}
+      <card-grid
+        v-for="card in cardList"
+        v-bind:grid="card"
+        v-bind:key="card.id">
+      </card-grid>
     </div>
   </div>
+
+
 </main>
+
+</div>
 <footer>
- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
- <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
- <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
- <script src="static/js/fetch.js"></script>
- <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+  <div id="scroll">
+  <a></a>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+  <script src="https://unpkg.com/vue-masonry@0.11.3/dist/vue-masonry-plugin-window.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- development version, includes helpful console warnings -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="static/js/vue-test.js"></script>
 </footer>
+
 </html>
