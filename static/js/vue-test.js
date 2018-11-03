@@ -56,6 +56,7 @@ var app = new Vue({
     cardList: [],
     errors:'',
     checkedSources: [],
+    tags:'',
   },
   methods: {
     search: function () {
@@ -82,7 +83,7 @@ var app = new Vue({
     },
     getKona: function() {
       page++
-      axios.get(`https://cors-anywhere.herokuapp.com/https://konachan.com/post.json?limit=20&page=`+ page)
+      axios.get(`https://cors-anywhere.herokuapp.com/https://konachan.com/post.json?page=`+ page +'&tags='+ this.tags + '&commit=Search&limit=20')
       .then(response => {
         // JSON responses are automatically parsed.
         console.log("konachan pego")
@@ -96,7 +97,24 @@ var app = new Vue({
         console.log("konachan falhou")
         this.errors.push(e)
       })
-    }
+    },
+    getYan: function() {
+      page++
+      axios.get(`https://yande.re/post.json?&page=`+ page +'&tags='+ this.tags + '&commit=Search&limit=20')
+      .then(response => {
+        // JSON responses are automatically parsed.
+        console.log("Yandere pego")
+        for(cont=0;cont<20;cont++){
+          if(response.data[cont].rating=='s'){//verify if safe for work
+            this.cardList.push(response.data[cont])
+          }
+        }
+      })
+      .catch(e => {
+        console.log("Yandere falhou")
+        this.errors.push(e)
+      })
+    },
   }
 })
 

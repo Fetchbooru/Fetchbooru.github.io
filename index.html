@@ -29,10 +29,10 @@
     <form>
       <div class="container">
         <div class="input-field">
-          <input id="tags" type="text" class="validate autocomplete"></input>
+          <input id="tags" v-model="tags" placeholder=" " type="text" class="validate autocomplete">
           <label class="white-text" for="tags">Tags</label>
         </div>
-        <button class="btn blue darken-1 waves-effect waves-light" v-on:click="search">Search
+        <button class="btn blue darken-1 waves-effect waves-light" v-on:click.prevent.self="search">Search
           <i class="material-icons right">search</i>
         </button>
       </div>
