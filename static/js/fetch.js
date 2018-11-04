@@ -584,23 +584,3 @@ setInterval(function() {
   updateCont();
   //checkImages();
 }, 1000);
-
-function checkImages() {
-  $('img').each(function() { // selecting all image element on the page
-
-    var img = new Image($(this)); // creating image element
-
-    img.onerror = function() { // trigger if the image wasn't loaded
-      console.log($(this).attr('src') + ' - error!');
-      $(this).attr('src') = $(this).attr('src').replace("/images",
-        "images")
-    }
-
-    img.src = $(this).attr('src'); // pass src to image object
-
-
-
-    console.log(img.complete);
-
-  });
-}
