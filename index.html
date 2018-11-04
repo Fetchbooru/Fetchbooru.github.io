@@ -14,22 +14,22 @@
 <div id="app">
 <div class="navbar-fixed">
   <nav>
-    <div class="nav-wrapper indigo">
+    <div class="nav-wrapper indigo darken-3">
       <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large left"><i class="material-icons">menu</i></a>
       <a class="center white-text" href="about.html">Fetchbooru</a>
-      <div id="" class="black-text right">{{blocks}}</div>
-      <a class="right black-text">Repeats blocked:</a>
+      <div id="" class="white-text right">{{blocks}}</div>
+      <a class="right white-text tooltipped" data-position="left" data-tooltip="Images with the same MD5 are blocked">Repeats blocked:</a>
     </div>
   </nav>
 </div>
 
 
-<ul id="slide-out" class="sidenav indigo">
+<ul id="slide-out" class="sidenav indigo darken-3">
   <li>
     <form>
       <div class="container">
         <div class="input-field">
-          <input id="tags" v-model="tags" placeholder=" " type="text" class="validate autocomplete"  autocomplete="off">
+          <input id="tags" v-model.lazy="tags" placeholder=" " type="text" class="validate autocomplete"  autocomplete="off">
           <label class="white-text" for="tags">Tags</label>
         </div>
         <button class="btn blue darken-1 waves-effect waves-light" v-on:click.prevent.self="search">Search

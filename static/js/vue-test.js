@@ -6,6 +6,7 @@ $(document).ready(function () {
 
   $('.sidenav').sidenav('open');
 
+  $('.tooltipped').tooltip();
 
   $('input.autocomplete').autocomplete({
     data: {
@@ -44,7 +45,7 @@ Vue.component('card-grid', {
   // "prop", which is like a custom attribute.
   // This prop is called itens.
   props: ['grid'],
-  template:'<div v-masonry-tile class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><img class="activator"  frameBorder="0" id="img" v-bind:src="grid.preview_url" /></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID:{{grid.id}}<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" v-bind:href="grid.jpeg_url">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID:{{grid.id}}<i class="material-icons right">close</i></span><p>Tags:{{grid.tags}}.</p></div></div></div>'
+  template:'<div v-masonry-tile class="block"><div class="card grey darken-3"><div class="card-image waves-effect waves-block waves-light"><img class="activator"  frameBorder="0" id="img" v-bind:src="grid.preview_url" /></div><div class="card-content"><span class="card-title activator white-text">ID:{{grid.id}}<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" v-bind:href="grid.jpeg_url">Source</a></p></div><div class="card-reveal grey darken-3"><span class="card-title white-text">ID:{{grid.id}}<i class="material-icons right">close</i></span><p class="white-text">Tags:{{grid.tags}}.</p></div></div></div>'
 }
 )
 var page=0;
@@ -64,6 +65,8 @@ var app = new Vue({
       page = 0
       this.counter=0
       this.cardList=[]
+      this.md5s=[]
+      blocks=0
       this.searchChecked()
     },
     searchChecked: function(){
@@ -85,7 +88,7 @@ var app = new Vue({
     },
     getKona: function() {
       page++
-      axios.get(`https://cors-anywhere.herokuapp.com/https://konachan.com/post.json?page=`+ page +'&tags='+ this.tags + '&commit=Search&limit=20')
+      axios.get(`https://cors-anywhere.herokuapp.com/https://konachan.com/post.json?commit=Search&limit=20&page=`+ page +'&tags='+ this.tags)
       .then(response => {
         // JSON responses are automatically parsed.
         console.log("konachan pego")
@@ -110,7 +113,7 @@ var app = new Vue({
     },
     getYan: function() {
       page++
-      axios.get(`https://yande.re/post.json?&page=`+ page +'&tags='+ this.tags + '&commit=Search&limit=20')
+      axios.get(`https://yande.re/post.json?commit=Search&limit=20&page=`+ page +'&tags='+ this.tags)
       .then(response => {
         // JSON responses are automatically parsed.
         console.log("Yandere pego")
