@@ -44,7 +44,7 @@ Vue.component('card-grid', {
   // "prop", which is like a custom attribute.
   // This prop is called itens.
   props: ['grid'],
-  template:'<div v-masonry-tile class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><img class="activator"  frameBorder="0" id="img" v-bind:src="grid.preview_url" /></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID:{{grid.id}}<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" v-bind:href="grid.sample_url">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID:{{grid.id}}<i class="material-icons right">close</i></span><p>Tags:{{grid.tags}}.</p></div></div></div>'
+  template:'<div v-masonry-tile class="block"><div class="card"><div class="card-image waves-effect waves-block waves-light"><img class="activator"  frameBorder="0" id="img" v-bind:src="grid.preview_url" /></div><div class="card-content"><span class="card-title activator grey-text text-darken-4">ID:{{grid.id}}<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" v-bind:href="grid.jpeg_url">Source</a></p></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">ID:{{grid.id}}<i class="material-icons right">close</i></span><p>Tags:{{grid.tags}}.</p></div></div></div>'
 }
 )
 var page=0;
@@ -57,10 +57,12 @@ var app = new Vue({
     errors:'',
     checkedSources: [],
     tags:'',
+    md5s:[],
   },
   methods: {
     search: function () {
       page = 0
+      this.counter=0
       this.cardList=[]
       this.searchChecked()
     },
@@ -88,9 +90,17 @@ var app = new Vue({
         // JSON responses are automatically parsed.
         console.log("konachan pego")
         for(cont=0;cont<20;cont++){
-          if(response.data[cont].rating=='s'){//verify if safe for work
+        console.log("entrei no loop")
+        if(response.data[cont].rating=='s'){//verify if safe for work
+          console.log("encontrei um safe")
+          if(!this.md5s.includes(response.data[cont].md5)){
+            console.log("nao repetido")
+            this.md5s.push(response.data[cont].md5)
             this.cardList.push(response.data[cont])
+          }else{
+            this.blocks++
           }
+        }
         }
       })
       .catch(e => {
@@ -105,8 +115,16 @@ var app = new Vue({
         // JSON responses are automatically parsed.
         console.log("Yandere pego")
         for(cont=0;cont<20;cont++){
+          console.log("entrei no loop")
           if(response.data[cont].rating=='s'){//verify if safe for work
-            this.cardList.push(response.data[cont])
+            console.log("encontrei um safe")
+            if(!this.md5s.includes(response.data[cont].md5)){
+              console.log("nao repetido")
+              this.md5s.push(response.data[cont].md5)
+              this.cardList.push(response.data[cont])
+            }else{
+              this.blocks++
+            }
           }
         }
       })
@@ -131,7 +149,7 @@ var scroll = new Vue({
       const scrollY = window.scrollY
       const visible = document.documentElement.clientHeight
       const pageHeight = document.documentElement.scrollHeight
-      const bottomOfPage = visible + scrollY + 350 >= pageHeight
+      const bottomOfPage = visible + scrollY + 275 >= pageHeight
       return bottomOfPage || pageHeight < visible
     },
   },
