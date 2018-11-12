@@ -180,6 +180,42 @@ var app = new Vue({
         this.errors.push(e)
       })
     },
+    getGel: function() {
+      page++
+      axios.get(`https://cors-anywhere.herokuapp.com/https://gelbooru.com/index.php?page=dapi&limit=20&s=post&q=index&json=1&pid=`+ page +'&tags='+ this.tags, {transformResponse: [function (data) {
+        // Do whatever you want to transform the data
+        // gelbooru api doest match konachan/yandere, so I have to do some changes in the response data
+        data = data.replace(/source/g,"jpeg_url");
+        data = data.replace(/file_url/g,"preview_url");
+        data = data.replace(/hash/g,"md5");
+        data = JSON.parse(data);
+        return data;
+      }],})
+      .then(response => {
+        // JSON responses are automatically parsed.
+        console.log("Gelbooru pego")
+        console.log(response.data)
+        console.log(typeof(response.data));
+        for(cont=0;cont<20;cont++){
+          console.log("entrei no loop")
+          console.log(response.data[cont]);
+          if(response.data[cont].rating=='s'){//verify if safe for work
+            console.log("encontrei um safe")
+            if(!this.md5s.includes(response.data[cont].md5)){
+              console.log("nao repetido")
+              this.md5s.push(response.data[cont].md5)
+              this.cardList.push(response.data[cont])
+            }else{
+              this.blocks++
+            }
+          }
+        }
+      })
+      .catch(e => {
+        console.log("Gelbooru falhou")
+        this.errors.push(e)
+      })
+    },
   }
 })
 
