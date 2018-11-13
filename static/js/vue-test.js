@@ -150,7 +150,7 @@ var app = new Vue({
         console.log(data);
         console.log(typeof(data));
         data = data.replace(/large_file_url/g,"jpeg_url");
-        data = data.replace(/file_url/g,"preview_url");
+        data = data.replace(/preview_file_url/g,"preview_url");
         data = data.replace(/tag_string/g,"tags");
         data = JSON.parse(data);
         return data;
