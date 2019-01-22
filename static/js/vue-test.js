@@ -14,7 +14,7 @@ $(document).ready(function () {
     },
   });
 
-  // Autocomplete
+  /* Autocomplete
   $(function() {
     $("input").keyup(function() {
       tag = document.getElementById('tags').value;
@@ -34,7 +34,7 @@ $(document).ready(function () {
       });
     });
   });
-
+*/
 });
 
 var VueMasonryPlugin = window["vue-masonry-plugin"].VueMasonryPlugin
@@ -65,8 +65,31 @@ var app = new Vue({
     checkedSources: [],
     tags:'',
     md5s:[],
+    dataName: [],
   },
   methods: {
+    updateTags: function(){
+      console.log(tags.value)
+      axios.get('https://yande.re/tag.json?name=' + tags.value)
+      .then(response => {
+        // JSON responses are automatically parsed.
+        console.log("tags pego")
+        console.log(response)
+        response.data.forEach(element => {
+          console.log("entrei no loop")
+          console.log(element.name)
+          var nome = element.name
+          this.dataName[element.name]=null;
+          $('.autocomplete').autocomplete('updateData',this.dataName);
+        });
+      })
+      .catch(e => {
+        console.log("tags falhou")
+        //this.errors.push(e)
+      })
+      
+
+    },
     search: function () {
       page = 0
       this.counter=0
