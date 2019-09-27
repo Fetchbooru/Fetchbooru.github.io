@@ -1,4 +1,8 @@
-
+.modal.open{
+  width: 90%;
+  max-height: 90%;
+  height: 80%;
+}
 
 body {
   display: flex;

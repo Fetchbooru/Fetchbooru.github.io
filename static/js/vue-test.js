@@ -4,6 +4,10 @@ var $grid = $('.grid').masonry({
 $(document).ready(function () {
   $('.sidenav').sidenav();
 
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+
   $('.sidenav').sidenav('open');
 
   $('.tooltipped').tooltip();
@@ -49,7 +53,25 @@ Vue.component('card-grid', {
       type:Object
     },
 },
-  template:'<div v-masonry-tile class="block"><div class="card grey darken-3"><div class="card-image waves-effect waves-block waves-light"><img class="activator"  frameBorder="0" id="img" v-bind:src="grid.preview_url" /></div><div class="card-content"><span class="card-title activator white-text">ID:{{grid.id}}<i class="material-icons right">more_vert</i></span><p><a rel="noopener noreferrer" target="_blank" v-bind:href="grid.jpeg_url">Source</a></p></div><div class="card-reveal grey darken-3"><span class="card-title white-text">ID:{{grid.id}}<i class="material-icons right">close</i></span><p class="white-text">Tags:{{grid.tags}}.</p></div></div></div>'
+  template: `
+  <div v-masonry-tile class="block">
+    <div class="card grey darken-3">
+        <div class="card-image waves-effect waves-block waves-light"><img class="activator" frameBorder="0" id="img"
+                v-bind:src="grid.preview_url" /></div>
+        <div class="card-content"><span class="card-title activator modal-trigger white-text" data-target="modal1" href="#modal1" @click="updateModal(grid)">ID:{{grid.id}}<i
+                    class="material-icons right" >more_vert</i></span>
+            <p><a rel="noopener noreferrer" target="_blank" v-bind:href="grid.jpeg_url">Source</a></p>
+        </div>
+        
+    </div>
+</div>
+  `,
+  methods:{
+    updateModal: function(gridInfo){
+      console.log(gridInfo);
+      app.modal = gridInfo;
+    },
+  }
 }
 )
 
@@ -66,6 +88,7 @@ var app = new Vue({
     tags:'',
     md5s:[],
     dataName: [],
+    modal: {}
   },
   methods: {
     updateTags: function(){
